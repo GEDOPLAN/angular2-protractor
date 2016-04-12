@@ -1,0 +1,12 @@
+<fieldset>
+    <legend>Github-Infos für Organisation: {{organisationName}}</legend>
+
+    <div class="row" *ngFor="#field of orgInfo | ObjectIterate">
+        <div class="col-md-2">
+            <span class="repoattrlabel">{{field.label}}</span>
+        </div>
+        <div class="col-md-6">
+           {{field.value}}
+        </div>
+    </div>
+</fieldset>

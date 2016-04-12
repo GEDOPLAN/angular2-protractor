@@ -1,0 +1,16 @@
+i{
+    font-size: 4em;
+}
+
+button{
+    border: 2px solid white;
+    padding: 2em;
+}
+
+button>span{
+    display: block;
+}
+
+.row{
+    padding-top: 10%;
+}

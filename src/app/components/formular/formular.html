@@ -1,0 +1,38 @@
+<form class="form-horizontal" novalidate="" #form="ngForm" on-ngSubmit="submit(username.value, message.value)">
+    <fieldset>
+        <!-- Form Name -->
+        <legend>Message-Board</legend>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="username">Username</label>  
+            <div class="col-md-6">
+                <input bindon-ngModel="username" id="username" name="username" type="text" placeholder="" class="form-control input-md" required="" ngControl="username">
+
+            </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="message">Nachricht</label>
+            <div class="col-md-6">                     
+                <textarea bindon-ngModel="message" class="form-control" id="message" name="message" rows="5" required="" ngControl="message"></textarea>
+            </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+            <div class="col-md-2 col-md-offset-4">                     
+                <button type="submit" class="btn btn-primary btn-lg fill" bind-disabled="!form.valid">submit</button>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Messages</legend>
+        <div class="col-sm-12 message-entry" *ngFor="#msg of messages">
+             <span>{{msg.username}}</span>:
+            <span>{{msg.message}}</span>
+            <hr/>
+        </div>
+    </fieldset>
+</form>
