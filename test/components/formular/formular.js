@@ -15,13 +15,15 @@ describe('Form-Page', function () {
         element(by.id("message")).sendKeys("HelloWorld");
         expect(btn.getAttribute('disabled')).toBeFalsy();
     })
-    
+
     it("Submit", function () {
-        element(by.id("username")).clear().sendKeys("Test");
-        element(by.id("message")).sendKeys("OneMessage");
-        element(by.css("button[type='submit']")).click().then(function() {
-            expect(element.all(by.css('.message-entry span')).get(0).getText()).toBe("Test")
-            expect(element.all(by.css('.message-entry span')).get(1).getText()).toBe("HelloWorld")
+        var promise1 = element(by.id("username")).clear().sendKeys("Test");
+        var promise2 = element(by.id("message")).sendKeys("OneMessage");
+        Promise.all(promise1, promise2).then(function () {
+            element(by.css("button[type='submit']")).click().then(function () {
+                expect(element.all(by.css('.message-entry span')).get(0).getText()).toBe("Test")
+                expect(element.all(by.css('.message-entry span')).get(1).getText()).toBe("OneMessage")
+            })
         })
     })
 });

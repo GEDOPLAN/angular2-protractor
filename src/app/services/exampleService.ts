@@ -4,11 +4,11 @@ import {Observable}     from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 
 @Injectable()
-export class GithubService {
+export class ExampleService {
     constructor(private _http:Http){}
     
-    getOrganisation(orgname: string): Observable<any>{
-        return this._http.get(`https://api.github.com/orgs/${orgname}`).map(r=> r.json());
+    getExampleData(id:number): Observable<any>{
+        return this._http.get(`rest/posts/${id}`).map(r=> r.json());
     }
 }
 

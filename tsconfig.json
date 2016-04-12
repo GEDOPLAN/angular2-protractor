@@ -4,15 +4,17 @@
     "target": "es5",
     "noImplicitAny": false,
     "outDir": "dist",
-    "rootDir": ".",
+    "rootDir": "src",
     "sourceMap": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node"
   },
   "exclude": [
-    "typings/main.d.ts",
-    "typings/main",
-    "node_modules"
+        "node_modules",
+        "typings/main",
+        "typings/main.d.ts",
+        "typings/browser",
+        "typings/browser.d.ts"
   ]
 }

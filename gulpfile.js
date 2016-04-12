@@ -10,6 +10,8 @@ var rimraf = require('gulp-rimraf');
 var sourcemaps = require('gulp-sourcemaps');
 var angularProtractor = require('gulp-angular-protractor');
 var gulpProtractorAngular = require('gulp-angular-protractor');
+var modRewrite = require('connect-modrewrite');
+var fs = require('fs');
 
 //Typescript Config;
 var tsProject = ts.createProject(tsConfig.compilerOptions);
@@ -90,7 +92,7 @@ gulp.task('compile:test', function () {
 
 
 //live reload server
-gulp.task('test', ['server'], function () {
+gulp.task('test', ['server:test'], function () {
     gulp.src(['test/**/*.js'])
             .pipe(gulpProtractorAngular({
                 'configFile': 'test/conf.js',
@@ -112,7 +114,48 @@ gulp.task('server', ['copy:deps', 'copy:src', 'compile:app'], function () {
         root: 'dist',
         livereload: true,
         fallback: 'dist/index.html',
-        port: 3000
+        port: 3000,
+        middleware: function () {
+            return [
+                modRewrite([
+                    '^/rest/posts/(.*)$ http://jsonplaceholder.typicode.com/posts/$1 [P]'
+                ])
+            ];
+        }
+    });
+});
+
+
+var endpoints_conf = require('./test/endpoint.config.json');
+
+gulp.task('server:test', ['copy:deps', 'copy:src', 'compile:app'], function () {
+    connect.server({
+        root: 'dist',
+        fallback: 'dist/index.html',
+        port: 3000,
+        middleware: function (connect, options) {
+            var middlewares = [];
+            middlewares.push(function (req, res, next) {
+                var endpoints = endpoints_conf;
+                var match = false;
+                var fileToRead = "";
+                
+                Object.keys(endpoints).forEach(function (url) {
+                    if (req.url.indexOf(url) == 0) {
+                        match = true;
+                        fileToRead = endpoints[url];
+                    }
+                });
+
+                if (match == false) {
+                    return next();
+                }
+
+                res.end(fs.readFileSync(fileToRead));
+            });
+
+            return middlewares;
+        }
     });
 });
 

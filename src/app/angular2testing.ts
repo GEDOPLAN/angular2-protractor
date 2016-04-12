@@ -3,7 +3,7 @@ import {Router, Route, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {Home} from './components/home/home.controller';
 import {Formular} from './components/formular/formular.controller';
-import {Github} from './components/github/github.controller';
+import {Service} from './components/service/service.controller';
 
 @Component({
   selector: 'app',
@@ -15,7 +15,7 @@ import {Github} from './components/github/github.controller';
 @RouteConfig([
   new Route({ path: '/home', component: Home, name: 'Home', useAsDefault: true}),
   new Route({ path: '/form', component: Formular, name: 'Form'}),
-  new Route({ path: '/github', component: Github, name: 'Github'}),
+  new Route({ path: '/service', component: Service, name: 'Service'}),
 ])
 export class App {
 

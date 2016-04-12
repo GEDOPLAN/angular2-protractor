@@ -4,7 +4,8 @@
   "description": "A simple starter Angular2 project",
   "main": "index.js",
   "scripts": {
-    "start": "gulp clean && gulp"
+    "start": "gulp clean && gulp",
+    "test": "gulp clean && gulp test"
   },
   "repository": {
     "type": "git",
@@ -20,14 +21,17 @@
   },
   "homepage": "https://github.com/angular/angular2-seed#readme",
   "devDependencies": {
+    "connect-modrewrite": "^0.9.0",
     "gulp": "^3.9.0",
     "gulp-angular-protractor": "^0.1.1",
     "gulp-connect": "^2.2.0",
+    "gulp-json-srv": "^0.2.0",
     "gulp-rimraf": "^0.2.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^2.10.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
+    "json-server": "^0.8.9",
     "protractor": "^3.2.2",
     "systemjs": "^0.19.6",
     "systemjs-builder": "^0.14.11",

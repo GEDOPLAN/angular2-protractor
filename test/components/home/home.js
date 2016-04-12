@@ -14,11 +14,11 @@ describe('Home-Page', function () {
     });
 
     var navs = [
-        {selector: "button[class*=btn-primary]", index: 1, label: "Service-Test", urlmatch: ".*?/github"},
+        {selector: "button[class*=btn-primary]", index: 1, label: "Service-Test", urlmatch: ".*?/service"},
         {selector: "button[class*=btn-primary]", index: 0, label: "Formular-Tests", urlmatch: ".*?/form"},
         {selector: "ul.nav li>a", index: 0, label: "Home", urlmatch: ".*?/home"},
         {selector: "ul.nav li>a", index: 1, label: "Formular-Testing", urlmatch: ".*?/form"},
-        {selector: "ul.nav li>a", index: 2, label: "Service-Testing", urlmatch: ".*?/github"}
+        {selector: "ul.nav li>a", index: 2, label: "Service-Testing", urlmatch: ".*?/service"}
     ]
 
     navs.forEach(function (n) {
@@ -28,7 +28,7 @@ describe('Home-Page', function () {
             element.all(by.css(n.selector)).get(n.index).click().then(function () {
                 browser.getCurrentUrl().then(function (u) {
                     expect(u).toMatch(n.urlmatch);
-                    setTimeout(callback, 1000);
+                    setTimeout(callback, 2000);
                 })
             })
         })
