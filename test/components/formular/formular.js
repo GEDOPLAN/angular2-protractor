@@ -1,6 +1,6 @@
 describe('Form-Page', function () {
-    beforeEach(function () {
-        browser.get('http://localhost:3000/form');
+    beforeEach(function (done) {
+        browser.get('http://localhost:3000/form').then(done);
     })
 
     it("Init", function () {

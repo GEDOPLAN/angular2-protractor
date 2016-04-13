@@ -1,6 +1,6 @@
 describe("Service-Page", function () {
-    beforeEach(function () {
-        browser.get('http://localhost:3000/service');
+    beforeEach(function (done) {
+        browser.get('http://localhost:3000/service').then(done);
     })
 
     it("Loaded Correctly Post 1", function () {
