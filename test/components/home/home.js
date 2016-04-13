@@ -13,6 +13,13 @@ describe('Home-Page', function () {
         })
     });
 
+    it('Simple Navigation', function () {
+        var button = element(by.id('toForm'));
+        button.click().then(function () {
+            expect(browser.getCurrentUrl()).toMatch(".*?/form");
+        })
+    });
+
     var navs = [
         {selector: "ul.nav li>a", index: 1, label: "Formular-Testing", urlmatch: ".*?/form"},
         {selector: "ul.nav li>a", index: 2, label: "Service-Testing", urlmatch: ".*?/service"},

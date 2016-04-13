@@ -12,8 +12,9 @@ describe('Form-Page', function () {
     it("Submit Disabled", function () {
         var btn = element(by.css("button[type='submit']"))
         expect(btn.getAttribute('disabled')).toBeTruthy();
-        element(by.id("message")).sendKeys("HelloWorld");
-        expect(btn.getAttribute('disabled')).toBeFalsy();
+        element(by.id("message")).sendKeys("HelloWorld").then(function () {
+            expect(btn.getAttribute('disabled')).toBeFalsy();
+        })
     })
 
     it("Submit", function () {
