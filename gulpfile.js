@@ -8,8 +8,7 @@ var tsConfig = require('./tsconfig.json');
 var connect = require('gulp-connect');
 var rimraf = require('gulp-rimraf');
 var sourcemaps = require('gulp-sourcemaps');
-var angularProtractor = require('gulp-angular-protractor');
-var gulpProtractorAngular = require('gulp-angular-protractor');
+var protractor = require("gulp-protractor").protractor;
 var modRewrite = require('connect-modrewrite');
 var fs = require('fs');
 
@@ -80,32 +79,15 @@ gulp.task('compile:app', function () {
             .pipe(connect.reload());
 });
 
-//compile app typescript files
-gulp.task('compile:test', function () {
-    return gulp.src('test/**/*.ts')
-            .pipe(sourcemaps.init())
-            .pipe(ts(tsProject))
-            .pipe(sourcemaps.write())
-            .pipe(gulp.dest('./test'))
-            .pipe(connect.reload());
-});
 
-
-//live reload server
 gulp.task('test', ['server:test'], function () {
     gulp.src(['test/**/*.ts'])
-            .pipe(gulpProtractorAngular({
-                'configFile': 'test/conf.js',
-                'debug': false,
-                'autoStartStopServer': true
+            .pipe(protractor({
+                configFile: "test/conf.js"
             }))
             .on('error', function (e) {
-                console.log(e);
+                throw e
             })
-            .on('end', function (e) {
-                console.log("Test-Finished");
-                connect.serverClose();
-            });
 });
 
 //live reload server
