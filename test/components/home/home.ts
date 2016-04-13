@@ -2,7 +2,7 @@
 
 describe('Home-Page', () => {
     
-    beforeEach(() => browser.get('http://localhost:3000/home'));
+    beforeEach((done) => browser.get('http://localhost:3000/home').then(() => done()));
     
     it('Navigation Rendered', () => {
         element.all(by.css('button[class*=btn-primary]')).then(elements => expect(elements.length).toBe(2));

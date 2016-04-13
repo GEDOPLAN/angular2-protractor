@@ -1,7 +1,7 @@
 /// <reference path="..\..\..\typings\main.d.ts" />
 
 describe('Form-Page', () => {
-    beforeEach( () => browser.get('http://localhost:3000/form'));
+    beforeEach((done) => browser.get('http://localhost:3000/form').then(() => done()));
 
     it("Init", () => {
         expect(element(by.id("username")).getAttribute("value")).toBe("Gast");
