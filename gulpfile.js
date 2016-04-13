@@ -93,7 +93,7 @@ gulp.task('compile:test', function () {
 
 //live reload server
 gulp.task('test', ['server:test'], function () {
-    gulp.src(['test/**/*.js'])
+    gulp.src(['test/**/*.ts'])
             .pipe(gulpProtractorAngular({
                 'configFile': 'test/conf.js',
                 'debug': false,
