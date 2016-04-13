@@ -7,7 +7,7 @@ var reporter = new HtmlScreenshotReporter({
 
 exports.config = {
     framework: 'jasmine',
-    seleniumAddress: 'http://localhost:4444/wd/hub',
+    seleniumServerJar: '../node_modules/protractor/selenium/selenium-server-standalone-2.52.0.jar',
     useAllAngular2AppRoots: true,
     capabilities: {
         'browserName': 'chrome',
