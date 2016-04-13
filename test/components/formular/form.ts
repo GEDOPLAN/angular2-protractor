@@ -18,8 +18,8 @@ describe('Form-Page', function() {
     })
 
     it("Submit", function() {
-        element(by.id("message")).sendKeys("a").then(function() {
-            element(by.css("button[type='submit']")).click().then(function() {
+        element(by.id("message")).sendKeys("a").then(() =>  {
+            element(by.css("button[type='submit']")).click().then( ()=> {
                 expect(element.all(by.css('.message-entry span')).get(0).getText()).toBe("Gast")
                 expect(element.all(by.css('.message-entry span')).get(1).getText()).toBe("a")
             })
