@@ -16,18 +16,21 @@ describe('Home-Page', function() {
     });
 
 
-    it("Navigate Services", function() {
-        element.all(by.css("button[class*=btn-primary]")).get(1).click().then(function() {
-            browser.getCurrentUrl().then(function(u) {
-                expect(u).toMatch(".*?/service");
-            })
-        })
-    })
+    var navs = [
+        { selector: "button[class*=btn-primary]", index: 1, label: "Service-Test", urlmatch: ".*?/service" },
+        { selector: "button[class*=btn-primary]", index: 0, label: "Formular-Tests", urlmatch: ".*?/form" },
+        { selector: "ul.nav li>a", index: 0, label: "Home", urlmatch: ".*?/home" },
+        { selector: "ul.nav li>a", index: 1, label: "Formular-Testing", urlmatch: ".*?/form" },
+        { selector: "ul.nav li>a", index: 2, label: "Service-Testing", urlmatch: ".*?/service" }
+    ]
 
-    it("Navigate Forms", function() {
-        element.all(by.css("button[class*=btn-primary]")).get(0).click().then(function() {
-            browser.getCurrentUrl().then(function(u) {
-                expect(u).toMatch(".*?/form");
+    navs.forEach(function(n) {
+        it("Navigate to: " + n.label, function(callback) {
+            console.log("Nav: " + n.label);
+            expect(element.all(by.css(n.selector)).get(n.index).getText()).toBe(n.label);
+            element.all(by.css(n.selector)).get(n.index).click().then(function() {
+                expect(browser.getCurrentUrl()).toMatch(n.urlmatch);
+                setTimeout(callback, 1000);
             })
         })
     })
