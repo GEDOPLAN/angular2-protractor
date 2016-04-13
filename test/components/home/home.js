@@ -1,6 +1,6 @@
 describe('Home-Page', function () {
     beforeEach(function () {
-        browser.get('http://localhost:3000/');
+        browser.get('http://localhost:3000/home');
     })
 
     it('Navigation Rendered', function () {
