@@ -8,7 +8,6 @@ var tsConfig = require('./tsconfig.json');
 var connect = require('gulp-connect');
 var rimraf = require('gulp-rimraf');
 var sourcemaps = require('gulp-sourcemaps');
-var angularProtractor = require('gulp-angular-protractor');
 var protractor = require("gulp-protractor").protractor;
 var modRewrite = require('connect-modrewrite');
 var fs = require('fs');
